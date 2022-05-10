@@ -1,6 +1,5 @@
 const errorHandler = (error, req, res, next) => {
-  const statusCode = res.statusCode || 500;
-  res.status(statusCode);
+  if (!res.statusCode) res.status(500);
   res.json({
     message: error.message,
     stack: process.env.NODE_ENV === 'production' ? null : error.stack,
