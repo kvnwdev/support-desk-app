@@ -4,6 +4,7 @@ import { FaUser } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 import { register, reset } from '../features/auth/authSlice';
+import Spinner from '../components/Spinner';
 
 const PASSWORD_REGEX =
   /^(?:(?=.*[a-z])(?=.*[A-Z])(?=.*\d+)(?=.*[!@#$%^&*?-]+).*)[a-zA-Z\d!@#$%^&*?-]{8,}$/gm;
@@ -52,6 +53,8 @@ function Register() {
     };
     dispatch(register(userData));
   };
+
+  if (isLoading) return <Spinner />;
 
   return (
     <>
